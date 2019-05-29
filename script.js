@@ -40,6 +40,9 @@ $(document).ready(function () {
     if (ballYChange <= 15) {
       ball.y -= ballYChange;
     }
+    else {
+      ballYChange = 15;
+    }
 
     if (ball.y >= 400) {
       ball.y = -20;
