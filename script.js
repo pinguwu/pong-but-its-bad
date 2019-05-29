@@ -37,11 +37,11 @@ $(document).ready(function () {
 
     // gravity and such
     ballYChange -= gravity;
-    if (ballYChange <= 15) {
+    if (ballYChange <= 5) {
       ball.y -= ballYChange;
     }
     else {
-      ballYChange = 15;
+      ballYChange = 5;
     }
 
     if (ball.y >= 400) {
