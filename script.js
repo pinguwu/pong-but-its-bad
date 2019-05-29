@@ -12,6 +12,7 @@ $(document).ready(function () {
 
   // paddle draw function
   function PaddleDraw (x, y) {
+    ctx.fillStyle = "#000000";
     ctx.fillRect(x, y, 100, 50)
   }
 
