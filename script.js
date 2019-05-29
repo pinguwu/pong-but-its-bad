@@ -6,6 +6,10 @@ $("document").ready(function () {
   paddle.x = 150;
   paddle.y = 300;
 
+  // defining canvas controlling variables
+  var canvas = document.getElementById("pong");
+  var ctx = canvas.getContext("2d");
+
   // paddle draw function
   function PaddleDraw (x, y) {
     ctx.fillRect(x, y, 100, 50)
@@ -14,8 +18,5 @@ $("document").ready(function () {
   // ball location starting variables
   ball.x = 200;
   ball.y = 100;
-
-  var canvas = document.getElementById("pong");
-  var ctx = canvas.getContext("2d");
 
 });
