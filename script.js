@@ -27,10 +27,29 @@ $(document).ready(function () {
     ctx.stroke();
   }
 
-  // draw the paddle using the PaddleDraw function
-  PaddleDraw(paddle.x, paddle.y);
+  // gravity!
+  var gravity = 5;
+  var ballYChange = 0;
 
-  // draw the ball using the BallDraw function
-  BallDraw(ball.x, ball.y);
+  setInterval( function () {
+    // clear the canvas before each pass
+    ctx.clearRect(0, 0, 400, 400);
+
+    // gravity and such
+    ballYChange -= gravity;
+    if (ballYChange <= 15) {
+      ball.y += ballYChange;
+    }
+
+    if (ball.y >= 400) {
+      ball.y = -20;
+    }
+
+    // draw ball with each pass
+    BallDraw(ball.x, ball.y);
+
+    //draw paddle with each pass
+    PaddleDraw(paddle.x, paddle.y);
+  }, 33);
 
 });
