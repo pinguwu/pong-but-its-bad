@@ -3,8 +3,8 @@ $(document).ready(function () {
   var ball = new Object();
 
   // paddle location starting variables
-  paddle.x = 150;
-  paddle.y = 300;
+  var paddle.x = 150;
+  var paddle.y = 300;
 
   // defining canvas controlling variables
   var canvas = document.getElementById("pong");
@@ -16,7 +16,7 @@ $(document).ready(function () {
   }
 
   // ball location starting variables
-  ball.x = 200;
-  ball.y = 100;
+  var ball.x = 200;
+  var ball.y = 100;
 
 });
