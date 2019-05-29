@@ -1,4 +1,4 @@
-$("document").ready(function () {
+$(document).ready(function () {
   var paddle = new Object();
   var ball = new Object();
 
