@@ -20,4 +20,7 @@ $(document).ready(function () {
   ball.x = 200;
   ball.y = 100;
 
+  // draw the paddle using the PaddleDraw function
+  PaddleDraw(paddle.x, paddle.y);
+
 });
