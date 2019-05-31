@@ -5,7 +5,7 @@ $(document).ready(function () {
   // paddle location starting variables
   paddle.x = 150;
   paddle.y = 300;
-  paddle.friction = 3;
+  paddle.friction = 2;
   paddle.momentum = 0;
 
   // defining canvas controlling variables
@@ -40,53 +40,60 @@ $(document).ready(function () {
   }
 
   // the game loop
-  var Game = setInterval( function () {
-    // clear the canvas before each pass
-    ctx.clearRect(0, 0, 400, 400);
+  setTimeout(function () {
+    var Game = setInterval( function () {
+      // clear the canvas before each pass
+      ctx.clearRect(0, 0, 400, 400);
 
-    // ball-paddle interaction
-    if ((ball.y) + 10 >= paddle.y && (ball.x >= paddle.x && ball.x <= (paddle.x + 100))) {
-      ball.y = paddle.y - 10;
-      ball.deltaY = -ball.deltaY;
-    }
-
-    // ball-wall interaction
-    if (ball.x + ball.deltaX > canvas.width - 10 || ball.x + ball.deltaX < 10) {
-      ball.deltaX = -ball.deltaX;
-    }
-    if (ball.y + ball.deltaY > canvas.height - 10 || ball.y + ball.deltaY < 10) {
-      ball.deltaY = -ball.deltaY;
-    }
-
-    // end the game if the ball is touching the bottom
-    if (ball.y >= 385) {
-      clearInterval(Game);
-    }
-
-    // ball movement
-    ball.y += ball.deltaY;
-    ball.x += ball.deltaX;
-
-    // paddle movement
-    document.addEventListener("keydown", function (event) {
-      if (event.defaultPrevented) {
-        return;
-      } else if (event.key == "ArrowLeft") {
-        paddle.momentum = paddle.momentum - 5;
-      } else if (event.key == "ArrowRight") {
-        paddle.momentum = paddle.momentum + 5;
+      // ball-paddle interaction
+      if ((ball.y) + 10 >= paddle.y && (ball.y < paddle.y + 10) && (ball.x >= paddle.x && ball.x <= (paddle.x + 100))) {
+        ball.y = paddle.y - 10;
+        ball.deltaY = -ball.deltaY;
       }
-      event.preventDefault();
-    });
-    paddle.x += paddle.momentum;
-    paddle.momentum = paddle.momentum / paddle.friction
+
+      // ball-wall interaction
+      if (ball.x + ball.deltaX > canvas.width - 10 || ball.x + ball.deltaX < 10) {
+        ball.deltaX = -ball.deltaX;
+      }
+      if (ball.y + ball.deltaY > canvas.height - 10 || ball.y + ball.deltaY < 10) {
+        ball.deltaY = -ball.deltaY;
+      }
+
+      // end the game if the ball is touching the bottom
+      if (ball.y >= 385) {
+        clearInterval(Game);
+      }
+
+      // ball movement
+      ball.y += ball.deltaY;
+      ball.x += ball.deltaX;
+
+      // paddle movement
+      document.addEventListener("keydown", function (event) {
+        if (event.defaultPrevented) {
+          return;
+        } else if (event.key == "ArrowLeft") {
+          paddle.x = paddle.x - 10;
+        } else if (event.key == "ArrowRight") {
+          paddle.x = paddle.x + 10;
+        }
+        event.preventDefault();
+      });
+      //if (paddle.momentum > 10) {
+        //paddle.momentum = 10;
+      //} else if (paddle.momentum < -10) {
+        //paddle.momentum = -10;
+      //}
+
+      paddle.momentum = paddle.momentum / paddle.friction
 
 
-    // draw ball with each pass
-    BallDraw(ball.x, ball.y);
+      // draw ball with each pass
+      BallDraw(ball.x, ball.y);
 
-    //draw paddle with each pass
-    PaddleDraw(paddle.x, paddle.y);
+      //draw paddle with each pass
+      PaddleDraw(paddle.x, paddle.y);
 
-  }, 16);
+    }, 16);
+  }, 2000);
 });
